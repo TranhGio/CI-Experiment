@@ -31,5 +31,10 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
-      - name: Echo a name
-        run: echo Davie so nice
+      - name: Run lint debug report
+        run: ./gradlew app:lintReportDebug
+      - name: Upload the artifact of lint report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-result.html
+          path: app/build/reports/lint-results-debug.html
