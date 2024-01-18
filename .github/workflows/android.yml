@@ -61,3 +61,17 @@ jobs:
         with:
           name: lint-result.html
           path: app/build/reports/lint-results-debug.html
+
+  run-unit-test:
+    needs: [run-lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - name: Run unit test
+        run: ./gradlew test
+      - name: Upload test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit_test_report
+          path: app/build/reports/tests/testDebugUnitTest/
