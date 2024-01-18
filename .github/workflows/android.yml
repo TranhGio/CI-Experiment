@@ -28,6 +28,11 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Connected check on android emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 31
+        script: ./gradlew connectedCheck
 
   run-lint:
     runs-on: ubuntu-latest
