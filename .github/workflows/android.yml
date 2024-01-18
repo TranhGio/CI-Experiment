@@ -81,10 +81,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
-      - uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew assembleDebug
+#      - uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew assembleDebug
       - run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v2
         with:
