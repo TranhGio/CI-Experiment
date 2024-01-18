@@ -107,4 +107,4 @@ jobs:
           repository: TranhGio/CI-Experiment-Automation
           ref: main
           path: CI-Experiment-Automation
-      - run: mv app-debug.apk ci-experiment/object/ && cd ci-experiment/object/ && ls -a
+      - run: pwd && ls -a
