@@ -84,18 +84,30 @@ jobs:
       - uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew connectedCheck
+          script: ./gradlew assembleDebug
+      - run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v2
         with:
-          name: instrumentation_test_report
-          path: app/build/reports/androidTests/connected/
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
 
+  automation-test:
+    needs: [instrumentation-test]
 
-      - name: Clone TranhGio/CI-Experiment-Automation PUBLIC repository
-        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+    runs-on: macos-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
         with:
-          depth: 1
-          branch: 'main'
-          owner: 'TranhGio'
-          repository: 'CI-Experiment-Automation'
+          repository: TranhGio/CI-Experiment-Automation
+          ref: main
+          path: CI-Experiment-Automation
+
       - run: ls -a
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: app-debug.apk
+          path: ci-experiment/object/
+      - run: cd ci-experiment/object && ls -a
