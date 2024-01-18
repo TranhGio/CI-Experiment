@@ -98,16 +98,15 @@ jobs:
 
     steps:
 
-      - uses: actions/checkout@v4
-        with:
-          repository: TranhGio/CI-Experiment-Automation
-          ref: main
-          path: CI-Experiment-Automation
-
       - run: ls -a
 
       - uses: actions/download-artifact@v4
         with:
           name: apk
-          path: ci-experiment/object/
-      - run: cd ci-experiment/object && ls -a
+
+      - uses: actions/checkout@v4
+        with:
+          repository: TranhGio/CI-Experiment-Automation
+          ref: main
+          path: CI-Experiment-Automation
+      - run: mv app-debug.apk object/ && cd object/ && ls -a
