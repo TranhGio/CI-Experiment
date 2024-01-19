@@ -103,7 +103,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: app-debug.apk
-          repository: CI-Experiment
+          repository: TranhGio/CI-Experiment
           github-token: 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
 
       - uses: actions/checkout@v4
