@@ -100,11 +100,15 @@ jobs:
 
       - run: ls -a
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: app-debug.apk
-          repository: TranhGio/CI-Experiment
-          github-token: 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
+#      - uses: actions/download-artifact@v4
+#        with:
+#          name: app-debug.apk
+#          repository: TranhGio/CI-Experiment
+#          github-token: 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
+
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v3
 
       - uses: actions/checkout@v4
         with:
