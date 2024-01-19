@@ -133,7 +133,7 @@ jobs:
         run: mv apk/app-debug.apk CI-Experiment-Automation/object/
       - name: Display all file structure of downloaded files after moving file
         run: ls -R
-      - run: cd CI-Experiment-Automation/
+      - run: cd CI-Experiment/CI-Experiment-Automation/
       - run: pwd
       - uses: actions/setup-node@v3
         with:
