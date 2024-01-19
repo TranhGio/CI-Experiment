@@ -133,10 +133,11 @@ jobs:
         run: mv apk/app-debug.apk CI-Experiment-Automation/object/
       - name: Display all file structure of downloaded files after moving file
         run: ls -R
-      - run: cd CI-Experiment-Automation/object/
-      - run: ls -R
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
+
+      - name: install node
+        uses: actions/setup-node@v3
+
       - run: npm install
+        working-directory: ./CI-Experiment-Automation
       - run: npm run wdio
+        working-directory: ./CI-Experiment-Automation
