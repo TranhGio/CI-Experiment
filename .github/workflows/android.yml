@@ -105,12 +105,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
-      - uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          force-avd-creation: false
-          disable-animations: true
-          script: ./gradlew connectedCheck
 
       #      - uses: actions/download-artifact@v4
 #        with:
@@ -142,5 +136,10 @@ jobs:
       - name: Install and Run Appium Server
         run: npm i --save-dev appium
         working-directory: ./CI-Experiment-Automation
-      - run: npm run wdio
-        working-directory: ./CI-Experiment-Automation
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          force-avd-creation: false
+          disable-animations: true
+          script: npm run wdio
+          working-directory: ./CI-Experiment-Automation
