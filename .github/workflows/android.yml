@@ -139,5 +139,7 @@ jobs:
 
       - run: npm install
         working-directory: ./CI-Experiment-Automation
+      - name: Install and Run Appium Server
+        uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
       - run: npm run wdio
         working-directory: ./CI-Experiment-Automation
