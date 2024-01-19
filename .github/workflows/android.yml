@@ -108,5 +108,6 @@ jobs:
           repository: TranhGio/CI-Experiment-Automation
           ref: main
           path: CI-Experiment-Automation
+      - run : echo ${GITHUB_WORKSPACE}
       - name: Display all file structure of downloaded files
         run: ls -R
