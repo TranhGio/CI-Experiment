@@ -116,14 +116,12 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v3
 
-      - run: echo ${{ secrets.TOKEN }}
-
       - uses: actions/checkout@v4
         with:
           repository: TranhGio/CI-Experiment-Automation
           ref: main
           path: CI-Experiment-Automation
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.token }}
       - name: Display all file structure of downloaded files
         run: ls -R
       - name: Moving the apk to object folder of Automation
