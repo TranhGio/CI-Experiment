@@ -123,7 +123,7 @@ jobs:
           repository: TranhGio/CI-Experiment-Automation
           ref: main
           path: CI-Experiment-Automation
-          token: ${{ secret.TOKEN }}
+          token: ${{ secrets.TOKEN }}
       - name: Display all file structure of downloaded files
         run: ls -R
       - name: Moving the apk to object folder of Automation
