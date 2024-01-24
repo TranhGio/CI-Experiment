@@ -167,3 +167,5 @@ jobs:
           repository: TranhGio/CI-Experiment-Automation
           event-type: tranhgio-event
           client-payload: '{"github": ${{ toJson(github) }}}'
+
+      - run: echo ${{ toJson(github) }}
