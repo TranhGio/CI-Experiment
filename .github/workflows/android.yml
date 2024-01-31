@@ -151,6 +151,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: ./gradlew DavieSayHello
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
       - run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v2
         with:
