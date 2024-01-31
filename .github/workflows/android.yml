@@ -1,6 +1,7 @@
 name: Android CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -149,23 +150,29 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'gradle'
+      - run: ./gradlew DavieSayHello
       - run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v2
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
+#
+#      - name: Trigger the automation repository
+#        uses: peter-evans/repository-dispatch@v2
+#        with:
+#          token: ${{ secrets.TRANHGIO_TOKEN }}
+#          repository: TranhGio/CI-Experiment-Automation
+#          event-type: tranhgio-event
+#          client-payload: '{"github": ${{ toJson(github) }}}'
 
-      - name: Trigger the automation repository
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.TRANHGIO_TOKEN }}
-          repository: TranhGio/CI-Experiment-Automation
-          event-type: tranhgio-event
-          client-payload: '{"github": ${{ toJson(github) }}}'
+      - name: Trigger the automation repository normally
+        run: |
+          curl -L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.TRANHGIO_TOKEN }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/TranhGio/CI-Experiment-Automation/dispatches \
+          -d '{"event_type":"tranhgio-event","client_payload": {"github": ${{ toJson(github) }}}'
 
 #      - run: echo ${{ toJson(github) }}
